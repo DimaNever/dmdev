@@ -14,6 +14,8 @@ public class Task1 {
         int value = getValue();
         System.out.println("Количество четных цифр: " + countsEvenNumbers(value));
         System.out.println("Количество нечетных цифр: " + countsOddNumbers(value));
+        System.out.println();
+        System.out.println();
     }
 
     private static int getValue() {
