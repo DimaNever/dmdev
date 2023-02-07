@@ -23,11 +23,9 @@ public class Task2 {
         Scanner sc = new Scanner(System.in);
         while (!sc.hasNextInt()) {
             System.out.println("Вы ввели не целое число. \nПожалуйста повторите ввод.");
-            Scanner sc1 = new Scanner(System.in);
-            sc = sc1;
+            sc = new Scanner(System.in);
         }
-        int value = sc.nextInt();
-        return value;
+        return sc.nextInt();
     }
 
     private static int numberReversal(int value) {
@@ -39,7 +37,6 @@ public class Task2 {
             value /= 10;
         }
         for (int i = counter; i >= 0; i--) {
-
             revers += (int) (Math.pow(10, i) * (value1 % 10));
             value1 /= 10;
         }

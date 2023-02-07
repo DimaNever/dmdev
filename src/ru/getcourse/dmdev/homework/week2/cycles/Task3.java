@@ -16,24 +16,52 @@ public class Task3 {
     public static void main(String[] args) {
 
         double salary = 600;
-        final double PERSENTOFSALARY = 0.1;
-        final double PERSENTOFINVESTMANT= 0.02;
-        double moneyInBroker = 0;
         int timeWork = 38;
-        double moneyForInvestment = 0;
+        final double PERCENTAGE_OF_SALARY = 0.1;
+        final double PERCENTAGE_OF_INVESTMANT = 0.02;
+        final double EXPENSES = 300;
 
+        double moneyBroker10 = countInvestments(salary, timeWork, EXPENSES, PERCENTAGE_OF_SALARY, PERCENTAGE_OF_INVESTMANT);
+        double moneyAccount10 = countSaving(salary, timeWork, EXPENSES, PERCENTAGE_OF_SALARY);
+        double moneyBroker20 = countInvestments(salary, timeWork, EXPENSES, 0.2, PERCENTAGE_OF_INVESTMANT);
+        double moneyAccount20 = countSaving(salary, timeWork, EXPENSES, 0.2);
 
+        System.out.println("Расчёт при ежемесячном инвестировании 10% от ЗП");
+        System.out.println("Средства накопленные на брокерском счёте: $" + moneyBroker10);
+        System.out.println("Средства накопленные на счёте Ивана: $" + moneyAccount10);
+        System.out.println("Общая сумма денежных средств: $" + (moneyBroker10 + moneyAccount10));
+        System.out.println();
+        System.out.println("Расчёт при ежемесячном инвестировании 20% от ЗП");
+        System.out.println("Средства накопленные на брокерском счёте: $" + moneyBroker20);
+        System.out.println("Средства накопленные на счёте Ивана: $" + moneyAccount20);
+        System.out.println("Общая сумма денежных средств: $" + (moneyBroker20 + moneyAccount20));
+    }
+
+    private static double countInvestments(double salary, int timeWork, double EXPENSES, double PERCENTAGE_OF_SALARY, double PERCENTAGE_OF_INVESTMANT) {
+        double moneyForInvestment;
+        double moneyInBrokerAccount = 0;
         for (int i = 1; i <= timeWork; i++) {
-            moneyForInvestment = (salary - 300) * PERSENTOFSALARY;
+            moneyForInvestment = (salary - EXPENSES) * PERCENTAGE_OF_SALARY;
 //            if (i == 1) {
-//                moneyInBroker += moneyForInvestment;
+//                moneyInBrokerAccount += moneyForInvestment;
 //                continue;
 //            }
-            moneyInBroker += moneyInBroker * PERSENTOFINVESTMANT + moneyForInvestment;
+            moneyInBrokerAccount += moneyInBrokerAccount * PERCENTAGE_OF_INVESTMANT + moneyForInvestment;
             if (i % 6 == 0) {
                 salary += 400;
             }
         }
+        return moneyInBrokerAccount;
     }
 
+    private static double countSaving(double salary, int timeWork, double EXPENSES, double PERCENTAGE_OF_SALARY) {
+        double moneyInSavingsAccount = 0; //в принципе она может быть и int, но надо ли делать интом?
+        for (int i = 1; i <= timeWork; i++) {
+            moneyInSavingsAccount += salary - EXPENSES - (salary - EXPENSES) * PERCENTAGE_OF_SALARY; //надо ли выносить в отдельную переменную salary - EXPENSES?
+            if (i % 6 == 0) {
+                salary += 400;
+            }
+        }
+        return moneyInSavingsAccount;
+    }
 }
