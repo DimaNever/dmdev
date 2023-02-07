@@ -35,8 +35,6 @@ public class Task3 {
         System.out.println("Средства накопленные на брокерском счёте: $" + moneyBroker20);
         System.out.println("Средства накопленные на счёте Ивана: $" + moneyAccount20);
         System.out.println("Общая сумма денежных средств: $" + (moneyBroker20 + moneyAccount20));
-        System.out.println();
-        System.out.println();
     }
 
     private static double countInvestments(double salary, int timeWork, double EXPENSES, double PERCENTAGE_OF_SALARY, double PERCENTAGE_OF_INVESTMANT) {
