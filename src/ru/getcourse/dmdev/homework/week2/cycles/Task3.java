@@ -27,14 +27,14 @@ public class Task3 {
         double moneyAccount20 = countSaving(salary, timeWork, EXPENSES, 0.2);
 
         System.out.println("Расчёт при ежемесячном инвестировании 10% от ЗП");
-        System.out.println("Средства накопленные на брокерском счёте: $" + moneyBroker10);
-        System.out.println("Средства накопленные на счёте Ивана: $" + moneyAccount10);
-        System.out.println("Общая сумма денежных средств: $" + (moneyBroker10 + moneyAccount10));
-        System.out.println();
+        System.out.printf("Средства накопленные на брокерском счёте: $" + "%.2f", moneyBroker10);
+        System.out.printf("\nСредства накопленные на счёте Ивана: $" + "%.2f", moneyAccount10);
+        System.out.printf("\nОбщая сумма денежных средств: $" + "%.2f", (moneyBroker10 + moneyAccount10));
+        System.out.println("\n");
         System.out.println("Расчёт при ежемесячном инвестировании 20% от ЗП");
-        System.out.println("Средства накопленные на брокерском счёте: $" + moneyBroker20);
-        System.out.println("Средства накопленные на счёте Ивана: $" + moneyAccount20);
-        System.out.println("Общая сумма денежных средств: $" + (moneyBroker20 + moneyAccount20));
+        System.out.printf("Средства накопленные на брокерском счёте: $" + "%.2f", moneyBroker20);
+        System.out.printf("\nСредства накопленные на счёте Ивана: $" + "%.2f", moneyAccount20);
+        System.out.printf("\nОбщая сумма денежных средств: $" + "%.2f", (moneyBroker20 + moneyAccount20));
     }
 
     private static double countInvestments(double salary, int timeWork, double EXPENSES, double PERCENTAGE_OF_SALARY, double PERCENTAGE_OF_INVESTMANT) {
