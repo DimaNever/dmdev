@@ -23,11 +23,9 @@ public class Task2 {
         Scanner sc = new Scanner(System.in);
         while (!sc.hasNextInt()) {
             System.out.println("Вы ввели не целое число. \nПожалуйста повторите ввод.");
-            Scanner sc1 = new Scanner(System.in);
-            sc = sc1;
+            sc = new Scanner(System.in);
         }
-        int value = sc.nextInt();
-        return value;
+        return sc.nextInt();
     }
 
     private static int numberReversal(int value) {
