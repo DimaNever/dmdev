@@ -8,7 +8,6 @@ import java.util.Scanner;
  * а возвращать количество четных цифр (вторая функция - нечетных).
  * Например: если введено число 228910, то у него 4 четные цифры (2, 2, 8, 0) и 2 нечетные (9, 1).
  */
-
 public class Task1 {
     public static void main(String[] args) {
         int value = getValue();
@@ -26,14 +25,18 @@ public class Task1 {
         return sc.nextInt();
     }
 
-    private static int countsEvenNumbers(int value) {
+    private static int checkNumber(int value){
         if (value == 0) {
             return 1;
         }
         if (value < 0) {
             value *= -1;
         }
+        return value;
+    }
 
+    private static int countsEvenNumbers(int value) {
+        value = checkNumber(value);
         int counterEven = 0;
         while (value > 0) {
             if (value % 2 == 0) {
@@ -45,13 +48,7 @@ public class Task1 {
     }
 
     private static int countsOddNumbers(int value) {
-        if (value == 0) {
-            return 0;
-        }
-        if (value < 0) {
-            value *= -1;
-        }
-
+        value = checkNumber(value);
         int counterOdd = 0;
         while (value > 0) {
             if (value % 2 != 0) {
