@@ -1,7 +1,7 @@
 package ru.getcourse.dmdev.homework.week3.building;
 
 public class Room {
-    boolean isPass;
+    private final boolean isPass;
 
     public Room(boolean isPass) {
         this.isPass = isPass;
