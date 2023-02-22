@@ -1,11 +1,11 @@
 package ru.getcourse.dmdev.homework.week3.building;
 
 public class House {
-    private int numberOfHouse;
+    private int number;
     private Floor[] floors;
 
-    public House(int numberOfHouse, Floor[] floors) {
-        this.numberOfHouse = numberOfHouse;
+    public House(int number, Floor[] floors) {
+        this.number = number;
         this.floors = floors;
     }
 
@@ -14,8 +14,6 @@ public class House {
     }
 
     void print() {
-        System.out.println("Number of house: " + numberOfHouse + ", quantity floors: " + floors.length + ".");
+        System.out.println("Number of house: " + number + ", quantity floors: " + floors.length + ".");
     }
-
-
 }

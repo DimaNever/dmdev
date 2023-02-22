@@ -15,7 +15,7 @@ package ru.getcourse.dmdev.homework.week3.building;
  * Там же реализовать метод printAllInformation, который на вход принимает объект типа дом,
  * и выводит информацию о нем, его этажах, квартирах и комнатах, вызывая методы print.
  */
-public class Test {
+public class HouseTest {
     public static void main(String[] args) {
         Room room1 = new Room(true);
         Room room2 = new Room(false);
@@ -62,7 +62,3 @@ public class Test {
         }
     }
 }
-
-
-
-

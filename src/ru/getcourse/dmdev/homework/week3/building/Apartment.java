@@ -1,11 +1,11 @@
 package ru.getcourse.dmdev.homework.week3.building;
 
 public class Apartment {
-    private int numberOfApartment;
+    private int number;
     private Room[] rooms;
 
-    public Apartment(int numberOfApartment, Room[] rooms) {
-        this.numberOfApartment = numberOfApartment;
+    public Apartment(int number, Room[] rooms) {
+        this.number = number;
         this.rooms = rooms;
     }
 
@@ -14,6 +14,6 @@ public class Apartment {
     }
 
     public void print() {
-        System.out.println("Number of apartment: " + numberOfApartment + ", quantity rooms: " + rooms.length + ".");
+        System.out.println("Number of apartment: " + number + ", quantity rooms: " + rooms.length + ".");
     }
 }

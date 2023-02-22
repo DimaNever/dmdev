@@ -35,8 +35,8 @@ public class Task2 {
         char[] chars = str.toCharArray();
         int count = 0;
         for (char aChar : chars) {
-            switch (aChar) {
-                case '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' -> count++;
+            if (Character.isDigit(aChar)){
+                count++;
             }
         }
 
@@ -59,10 +59,3 @@ public class Task2 {
         return ints;
     }
 }
-
-
-
-
-
-
-
