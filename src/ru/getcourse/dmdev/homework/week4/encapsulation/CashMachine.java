@@ -37,7 +37,7 @@ public class CashMachine {
     }
 
     public void addFifty(int amountFifty) {
-        this.numberOfFifties += amountFifty;         //какой вариант предпостительнее? Этот?
+        this.numberOfFifties += amountFifty;         //какой вариант предпочтительнее? Этот?
         this.balance += amountFifty * FIFTY;
         printAccountBalance();
     }
@@ -56,7 +56,7 @@ public class CashMachine {
 
     public boolean isMoneyWithdrawn(int money) {
         if (money > this.balance) {
-            System.out.println("Not enough funds in the account");
+            System.out.println("Not enough funds in the account. Account balance = " + getBalance());
             return false;
         }
         if (money % 10 != 0) {
@@ -70,7 +70,7 @@ public class CashMachine {
 
         while (money != 0) {
             while (money / FIFTY != 0) {
-                this.balance -= FIFTY; //можно было завести доп переменную = money вначале и потом просто отнять её от баланса. Я хз что лучше будет работать.
+                this.balance -= FIFTY; //можно было завести доп переменную = money вначале и потом просто отнять её от баланса. Я хз что лучше будет.
                 money -= FIFTY;
                 countFifty++;
             }
@@ -93,7 +93,7 @@ public class CashMachine {
     }
 
     @Override
-    public String toString() {
+    public String toString() {               //количество купюр сделано для наглядности
         return "CashMachine{" +
                 "number of fifties = " + getNumberOfFifties() +
                 ", number of twenties = " + getNumberOfTwenties() +

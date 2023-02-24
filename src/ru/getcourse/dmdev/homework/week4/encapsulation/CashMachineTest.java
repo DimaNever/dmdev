@@ -15,6 +15,7 @@ package ru.getcourse.dmdev.homework.week4.encapsulation;
  */
 public class CashMachineTest {
     public static void main(String[] args) {
+
         CashMachine cashMachine = new CashMachine(2, 2, 3);
         System.out.println(cashMachine);
 
