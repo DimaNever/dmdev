@@ -1,8 +1,9 @@
 package ru.getcourse.dmdev.homework.week5.part1.task2;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public final class ChatUtil2 {
 
@@ -14,7 +15,7 @@ public final class ChatUtil2 {
     public static List<User> usersOlder18(List<Chat> chats) {
         if (chats.isEmpty()){
             System.out.println("List is empty");
-            return null;
+            return Collections.emptyList();
         }
 
         List<User> users = new ArrayList<>();
@@ -49,7 +50,7 @@ public final class ChatUtil2 {
         }
 
         double sumAge = 0;
-        ListIterator<User> userListIterator = users.listIterator();
+        Iterator<User> userListIterator = users.iterator();
         while (userListIterator.hasNext()) {
             sumAge += userListIterator.next().getAge();
         }
