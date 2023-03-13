@@ -1,13 +1,13 @@
 package ru.getcourse.dmdev.homework.week6;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.averagingDouble;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
-import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toList;
 
 
 /**
@@ -49,7 +49,11 @@ public class Task {
         System.out.println(mapStudents);
 
         Map<Integer, List<String>> mapStudentsFullName = students.stream()
-                .collect(groupingBy(Student::getCourse, mapping(Student::getFullName,Collectors.toList())));
+                .collect(groupingBy(Student::getCourse, mapping(Student::getFullName, toList())));
+
+        for (List<String> value : mapStudentsFullName.values()) {
+            value.sort(String::compareTo);
+        }
         System.out.println(mapStudentsFullName);
     }
 }
