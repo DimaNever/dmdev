@@ -1,15 +1,12 @@
 package ru.getcourse.dmdev.homework.week6;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.averagingDouble;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.mapping;
-import static java.util.stream.Collectors.summarizingDouble;
 import static java.util.stream.Collectors.toMap;
 
 
@@ -46,15 +43,10 @@ public class Task {
                 new Student("Zalog", "Uspehov", 2, List.of(3, 5))
         );
 
-        Map<Integer, List<Student>> mapStudents = students.stream()
+        Map<Integer, Double> mapStudents = students.stream()
                 .filter(student -> student.getGrades().size() > 3)
-                .collect(groupingBy(Student::getCourse));
+                .collect(groupingBy(Student::getCourse, averagingDouble(Student::getAvgGrade)));
         System.out.println(mapStudents);
-
-        Map<Integer, Double> collect = students.stream()
-                .filter(student -> student.getGrades().size() > 3)
-                .collect(toMap(Student::getCourse, Student::getAvgGrade, (oldValue, newValue)-> newValue));
-        System.out.println(collect);
 
         Map<Integer, List<String>> mapStudentsFullName = students.stream()
                 .collect(groupingBy(Student::getCourse, mapping(Student::getFullName,Collectors.toList())));
