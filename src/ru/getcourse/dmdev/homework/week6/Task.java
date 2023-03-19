@@ -43,17 +43,24 @@ public class Task {
                 new Student("Zalog", "Uspehov", 2, List.of(3, 5))
         );
 
-        Map<Integer, Double> mapStudents = students.stream()
+        var integerDoubleMap = students.stream()
                 .filter(student -> student.getGrades().size() > 3)
                 .collect(groupingBy(Student::getCourse, averagingDouble(Student::getAvgGrade)));
-        System.out.println(mapStudents);
+        System.out.println(integerDoubleMap);
 
-        Map<Integer, List<String>> mapStudentsFullName = students.stream()
+        var integerListMap = students.stream()
+                .sorted(Comparator.comparing(Student::getName).thenComparing(Student::getSurname))
                 .collect(groupingBy(Student::getCourse, mapping(Student::getFullName, toList())));
+        System.out.println(integerListMap);
 
-        for (List<String> value : mapStudentsFullName.values()) {
-            value.sort(String::compareTo);
-        }
-        System.out.println(mapStudentsFullName);
+//        var iistMap = students.stream()
+//                .sorted(Comparator.comparing(Student::getName).thenComparing(Student::getSurname))
+//                .collect(groupingBy(Student::getCourse, students.stream()
+//                        .flatMap(Student::getFullName).collect(toList()));
+
+
+
+
+
     }
 }

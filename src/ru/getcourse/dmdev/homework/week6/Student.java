@@ -2,6 +2,7 @@ package ru.getcourse.dmdev.homework.week6;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class Student {
 
@@ -18,15 +19,16 @@ public class Student {
     }
 
     public String getFullName() {
-        return name + " " + surname;
+        return Stream.of(name, surname)
+                .reduce((x, y) -> x + " " + y)
+                .orElse("");
     }
 
     public double getAvgGrade() {
-        double sum = 0.0;
-        for (Integer grade : grades) {
-            sum += grade;
-        }
-        return sum / grades.size();
+        return grades.stream()
+                .mapToInt(Integer::intValue)
+                .average()
+                .orElse(0.0);
     }
 
     public String getName() {
@@ -66,9 +68,5 @@ public class Student {
                 ", course=" + course +
                 ", grades=" + grades +
                 '}';
-    }
-
-    public void setGrades(List<Integer> grades) {
-        this.grades = grades;
     }
 }
