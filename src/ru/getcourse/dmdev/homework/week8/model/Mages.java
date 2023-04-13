@@ -11,6 +11,7 @@ public class Mages {
 
     public Mages(String name) {
         this.name = name;
+
     }
 
     public void addCrystals(List<Crystal> crystalList) {
