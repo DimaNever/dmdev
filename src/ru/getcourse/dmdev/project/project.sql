@@ -14,19 +14,17 @@ CREATE TABLE IF NOT EXISTS meal
 (
     id                  SERIAL PRIMARY KEY,
     title_meal          VARCHAR(128) UNIQUE NOT NULL,
---     ingredient1_id      INT REFERENCES component (id),
-    mass_of_ingredient1 NUMERIC(5, 2),
---     ingredient2_id      INT REFERENCES component (id),
-    mass_of_ingredient2 NUMERIC(5, 2),
---     ingredient3_id      INT REFERENCES component (id),
-    mass_of_ingredient3 NUMERIC(5, 2)
     );
 
 CREATE TABLE IF NOT EXISTS meal_component
 (
-    component_id INT REFERENCES component (id),
+    component_id1 INT REFERENCES component (id),
+    component_id2 INT REFERENCES component (id),
+    component_id3 INT REFERENCES component (id),
+    mass_of_ingredient1 NUMERIC(5, 2),
+    mass_of_ingredient2 NUMERIC(5, 2),
+    mass_of_ingredient3 NUMERIC(5, 2)
     meal_id      INT REFERENCES meal (id)
-
     );
 
 CREATE TABLE IF NOT EXISTS diary
@@ -57,7 +55,7 @@ CREATE TABLE IF NOT EXISTS users
     email        VARCHAR(128) UNIQUE NOT NULL,
     phone_number NUMERIC(11) UNIQUE  NOT NULL,
     password     VARCHAR(32) UNIQUE  NOT NULL,
-    role         VARCHAR(8) UNIQUE   NOT NULL,
+    role         VARCHAR(8)   NOT NULL,
     id_program   INT REFERENCES program (id),
     id_diary     INT REFERENCES diary (id),
     id_meal      INT REFERENCES meal (id)
