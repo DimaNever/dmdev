@@ -28,17 +28,14 @@ CREATE TABLE IF NOT EXISTS meals
 (
     id         SERIAL PRIMARY KEY,
     title_meal VARCHAR(128) UNIQUE NOT NULL
-    --     Это пока оставил)
---     mass_of_ingredient1 NUMERIC(5, 2),
---     mass_of_ingredient2 NUMERIC(5, 2),
---     mass_of_ingredient3 NUMERIC(5, 2)
     );
 
 CREATE TABLE IF NOT EXISTS meals_products
 (
-    id          SERIAL PRIMARY KEY,
-    products_id INT REFERENCES products (id),
-    meals_id    INT REFERENCES meals (id)
+    id                 SERIAL PRIMARY KEY,
+    products_id        INT REFERENCES products (id),
+    meals_id           INT REFERENCES meals (id),
+    mass_of_ingredient NUMERIC(5, 2)
     );
 
 CREATE TABLE IF NOT EXISTS programs
@@ -61,6 +58,7 @@ CREATE TABLE IF NOT EXISTS days_meals
     days_id  INT REFERENCES days (id),
     meals_id INT REFERENCES meals (id)
     )
+
 
 
 
