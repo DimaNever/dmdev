@@ -1,49 +1,5 @@
 CREATE DATABASE fresh_life;
 
-CREATE TABLE IF NOT EXISTS component
-(
-    id                    SERIAL PRIMARY KEY,
-    title                 VARCHAR(128)  NOT NULL,
-    protein_in_100_grams  NUMERIC(5, 2) NOT NULL,
-    fats_in_100_grams     NUMERIC(5, 2) NOT NULL,
-    carbs_in_100_grams    NUMERIC(5, 2) NOT NULL,
-    calories_in_100_grams NUMERIC(5, 2) NOT NULL
-    );
-
-CREATE TABLE IF NOT EXISTS meal
-(
-    id                  SERIAL PRIMARY KEY,
-    title_meal          VARCHAR(128) UNIQUE NOT NULL,
-    );
-
-CREATE TABLE IF NOT EXISTS meal_component
-(
-    component_id1 INT REFERENCES component (id),
-    component_id2 INT REFERENCES component (id),
-    component_id3 INT REFERENCES component (id),
-    mass_of_ingredient1 NUMERIC(5, 2),
-    mass_of_ingredient2 NUMERIC(5, 2),
-    mass_of_ingredient3 NUMERIC(5, 2)
-    meal_id      INT REFERENCES meal (id)
-    );
-
-CREATE TABLE IF NOT EXISTS diary
-(
-    id    SERIAL PRIMARY KEY,
-    date  DATE,
-    meal1 VARCHAR(128) REFERENCES meal (title_meal),
-    meal2 VARCHAR(128) REFERENCES meal (title_meal),
-    meal3 VARCHAR(128) REFERENCES meal (title_meal),
-    meal4 VARCHAR(128) REFERENCES meal (title_meal),
-    meal5 VARCHAR(128) REFERENCES meal (title_meal)
-    );
-
-CREATE TABLE IF NOT EXISTS program
-(
-    id    SERIAL PRIMARY KEY,
-    title VARCHAR(128) UNIQUE NOT NULL
-    );
-
 CREATE TABLE IF NOT EXISTS users
 (
     id           SERIAL PRIMARY KEY,
@@ -55,8 +11,57 @@ CREATE TABLE IF NOT EXISTS users
     email        VARCHAR(128) UNIQUE NOT NULL,
     phone_number NUMERIC(11) UNIQUE  NOT NULL,
     password     VARCHAR(32) UNIQUE  NOT NULL,
-    role         VARCHAR(8)   NOT NULL,
-    id_program   INT REFERENCES program (id),
-    id_diary     INT REFERENCES diary (id),
-    id_meal      INT REFERENCES meal (id)
+    role         VARCHAR(8)          NOT NULL
     );
+
+CREATE TABLE IF NOT EXISTS products
+(
+    id                    SERIAL PRIMARY KEY,
+    title                 VARCHAR(128)  NOT NULL,
+    protein_in_100_grams  NUMERIC(5, 2) NOT NULL,
+    fats_in_100_grams     NUMERIC(5, 2) NOT NULL,
+    carbs_in_100_grams    NUMERIC(5, 2) NOT NULL,
+    calories_in_100_grams NUMERIC(5, 2) NOT NULL
+    );
+
+CREATE TABLE IF NOT EXISTS meals
+(
+    id         SERIAL PRIMARY KEY,
+    title_meal VARCHAR(128) UNIQUE NOT NULL
+    --     Это пока оставил)
+--     mass_of_ingredient1 NUMERIC(5, 2),
+--     mass_of_ingredient2 NUMERIC(5, 2),
+--     mass_of_ingredient3 NUMERIC(5, 2)
+    );
+
+CREATE TABLE IF NOT EXISTS meals_products
+(
+    id          SERIAL PRIMARY KEY,
+    products_id INT REFERENCES products (id),
+    meals_id    INT REFERENCES meals (id)
+    );
+
+CREATE TABLE IF NOT EXISTS programs
+(
+    id    SERIAL PRIMARY KEY,
+    title VARCHAR(128) UNIQUE NOT NULL
+    );
+
+CREATE TABLE IF NOT EXISTS days
+(
+    id          SERIAL PRIMARY KEY,
+    date        DATE,
+    users_id    INT REFERENCES users (id),
+    programs_id INT REFERENCES programs (id)
+    );
+
+CREATE TABLE IF NOT EXISTS days_meals
+(
+    id       SERIAL PRIMARY KEY,
+    days_id  INT REFERENCES days (id),
+    meals_id INT REFERENCES meals (id)
+    )
+
+
+
+
