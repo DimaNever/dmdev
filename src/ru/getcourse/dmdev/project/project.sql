@@ -2,7 +2,7 @@ CREATE DATABASE fresh_life;
 
 CREATE TABLE IF NOT EXISTS users
 (
-    id           SERIAL PRIMARY KEY,
+    id           BIGSERIAL PRIMARY KEY,
     first_name   VARCHAR(128)        NOT NULL,
     last_name    VARCHAR(128)        NOT NULL,
     age          INT                 NOT NULL,
@@ -14,52 +14,48 @@ CREATE TABLE IF NOT EXISTS users
     role         VARCHAR(8)          NOT NULL
     );
 
-CREATE TABLE IF NOT EXISTS products
+CREATE TABLE IF NOT EXISTS product
 (
-    id                    SERIAL PRIMARY KEY,
+    id                    BIGSERIAL PRIMARY KEY,
     title                 VARCHAR(128)  NOT NULL,
-    protein_in_100_grams  NUMERIC(5, 2) NOT NULL,
-    fats_in_100_grams     NUMERIC(5, 2) NOT NULL,
-    carbs_in_100_grams    NUMERIC(5, 2) NOT NULL,
-    calories_in_100_grams NUMERIC(5, 2) NOT NULL
+    protein_in_100_grams  NUMERIC(5, 2) DEFAULT 0.00,
+    fats_in_100_grams     NUMERIC(5, 2) DEFAULT 0.00,
+    carbs_in_100_grams    NUMERIC(5, 2) DEFAULT 0.00,
+    calories_in_100_grams NUMERIC(5, 2) DEFAULT 0.00
     );
 
-CREATE TABLE IF NOT EXISTS meals
+CREATE TABLE IF NOT EXISTS meal
 (
-    id         SERIAL PRIMARY KEY,
+    id         BIGSERIAL PRIMARY KEY,
     title_meal VARCHAR(128) UNIQUE NOT NULL
     );
 
-CREATE TABLE IF NOT EXISTS meals_products
+CREATE TABLE IF NOT EXISTS meal_product
 (
-    id                 SERIAL PRIMARY KEY,
-    products_id        INT REFERENCES products (id),
-    meals_id           INT REFERENCES meals (id),
-    mass_of_ingredient NUMERIC(5, 2)
+    id                 BIGSERIAL PRIMARY KEY,
+    products_id        INT REFERENCES product (id),
+    meals_id           INT REFERENCES meal (id),
+    mass_of_ingredient NUMERIC(5, 2) DEFAULT 0.00
     );
 
-CREATE TABLE IF NOT EXISTS programs
+CREATE TABLE IF NOT EXISTS program
 (
     id    SERIAL PRIMARY KEY,
     title VARCHAR(128) UNIQUE NOT NULL
     );
 
-CREATE TABLE IF NOT EXISTS days
+CREATE TABLE IF NOT EXISTS day
 (
-    id          SERIAL PRIMARY KEY,
-    date        DATE,
+    id          BIGSERIAL PRIMARY KEY,
+    date        DATE NOT NULL ,
     users_id    INT REFERENCES users (id),
-    programs_id INT REFERENCES programs (id)
+    programs_id INT REFERENCES program (id)
     );
 
-CREATE TABLE IF NOT EXISTS days_meals
+CREATE TABLE IF NOT EXISTS day_meal
 (
-    id       SERIAL PRIMARY KEY,
-    days_id  INT REFERENCES days (id),
-    meals_id INT REFERENCES meals (id)
+    id       BIGSERIAL PRIMARY KEY,
+    days_id  INT REFERENCES day (id),
+    meals_id INT REFERENCES meal (id)
     )
-
-
-
-
 
