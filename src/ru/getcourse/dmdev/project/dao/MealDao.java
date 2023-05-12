@@ -43,10 +43,17 @@ public class MealDao {
 
     //language=PostgreSQL
     public static final String FIND_ALL_SQL = """
-            SELECT id,
-            title_meal
+            SELECT meal.id,
+            title_meal,
+            p.id,
+            p.title,
+            p.protein_in_100_grams,
+            p.fats_in_100_grams,
+            p.carbs_in_100_grams,
+            p.calories_in_100_grams
             FROM meal
-            JOIN meal_product mp on meal.id = mp.meals_id
+                 JOIN meal_product mp on meal.id = mp.meals_id
+                 JOIN product p on p.id = mp.products_id
             """;
 
     //language=PostgreSQL
@@ -96,39 +103,39 @@ public class MealDao {
         }
     }
 
-    public List<MealEntity> findAll(MealEntity filter) {
-        List<Object> params = new ArrayList<>();
-        List<String > whereSql = new ArrayList<>();
-        if (filter.title() != null){
-            whereSql.add("title LIKE ?");
-            params.add("%" + filter.title() + "%");
-        }
-        params.add(filter.limit());
-        params.add(filter.offset());
-        var where = " LIMIT ? OFFSET ? ";
-        if (whereSql.size() != 0) {
-            where = whereSql.stream()
-                    .collect(joining(" AND ", " WHERE ", " LIMIT ? OFFSET ? "));
-        }
-        //language=PostgreSQL
-
-        var sql = FIND_ALL_SQL + where;
-
-        try (var connection = ConnectionManager.get();
-             var preparedStatement = connection.prepareStatement(sql)) {
-            for (int i = 0; i < params.size(); i++) {
-                preparedStatement.setObject(i + 1, params.get(i));
-            }
-            var resultSet = preparedStatement.executeQuery();
-            List<MealEntity> mealEntityList = new ArrayList<>();
-            while (resultSet.next()){
-                mealEntityList.add(buildMeal(resultSet));
-            }
-            return mealEntityList;
-        } catch (SQLException e) {
-            throw new DaoException(e);
-        }
-    }
+//    public List<MealEntity> findAll(MealEntity filter) {
+//        List<Object> params = new ArrayList<>();
+//        List<String > whereSql = new ArrayList<>();
+//        if (filter.title() != null){
+//            whereSql.add("title LIKE ?");
+//            params.add("%" + filter.title() + "%");
+//        }
+//        params.add(filter.limit());
+//        params.add(filter.offset());
+//        var where = " LIMIT ? OFFSET ? ";
+//        if (whereSql.size() != 0) {
+//            where = whereSql.stream()
+//                    .collect(joining(" AND ", " WHERE ", " LIMIT ? OFFSET ? "));
+//        }
+//        //language=PostgreSQL
+//
+//        var sql = FIND_ALL_SQL + where;
+//
+//        try (var connection = ConnectionManager.get();
+//             var preparedStatement = connection.prepareStatement(sql)) {
+//            for (int i = 0; i < params.size(); i++) {
+//                preparedStatement.setObject(i + 1, params.get(i));
+//            }
+//            var resultSet = preparedStatement.executeQuery();
+//            List<MealEntity> mealEntityList = new ArrayList<>();
+//            while (resultSet.next()){
+//                mealEntityList.add(buildMeal(resultSet));
+//            }
+//            return mealEntityList;
+//        } catch (SQLException e) {
+//            throw new DaoException(e);
+//        }
+//    }
 
     public List<MealEntity> findAll() {
         try (var connection = ConnectionManager.get();
