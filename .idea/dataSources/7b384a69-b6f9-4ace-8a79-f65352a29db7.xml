@@ -3,9 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.48">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <IntrospectionStateNumber>1041</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1070</IntrospectionStateNumber>
       <ServerVersion>15.2</ServerVersion>
-      <StartupTime>1683403466</StartupTime>
+      <StartupTime>1683905574</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -801,7 +801,7 @@ false Zulu
 13183||10|C|G
 13183||-9223372036854775808|U|G
 13183||10|U|G</Grants>
-      <IntrospectionStateNumber>1041</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1070</IntrospectionStateNumber>
       <ObjectId>17036</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4231,7 +4231,7 @@ false Zulu
     <schema id="265" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>1041</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1070</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>518</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4262,16 +4262,16 @@ false Zulu
     </sequence>
     <sequence id="269" parent="265" name="meal_product_id_seq">
       <DasType>bigint|0s</DasType>
-      <ObjectId>25577</ObjectId>
+      <ObjectId>25656</ObjectId>
       <SequenceIdentity>1(1)</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>1033</StateNumber>
+      <StateNumber>1069</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="270" parent="265" name="product_id_seq">
       <DasType>bigint|0s</DasType>
       <ObjectId>25557</ObjectId>
-      <SequenceIdentity>1(1)</SequenceIdentity>
+      <SequenceIdentity>1(9)</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>1031</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -4311,8 +4311,8 @@ false Zulu
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="276" parent="265" name="meal_product">
-      <ObjectId>25578</ObjectId>
-      <StateNumber>1033</StateNumber>
+      <ObjectId>25657</ObjectId>
+      <StateNumber>1069</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
@@ -4409,20 +4409,20 @@ false Zulu
       <SequenceId>25621</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <column id="289" parent="274" name="days_id">
+    <column id="289" parent="274" name="day_id">
       <DasType>integer|0s</DasType>
       <Position>2</Position>
-      <StateNumber>1036</StateNumber>
+      <StateNumber>1057</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="290" parent="274" name="meals_id">
+    <column id="290" parent="274" name="meal_id">
       <DasType>integer|0s</DasType>
       <Position>3</Position>
-      <StateNumber>1036</StateNumber>
+      <StateNumber>1059</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <foreign-key id="291" parent="274" name="day_meal_days_id_fkey">
-      <ColNames>days_id</ColNames>
+      <ColNames>day_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25628</ObjectId>
       <RefColNames>id</RefColNames>
@@ -4433,7 +4433,7 @@ false Zulu
       <RefTableKind>table</RefTableKind>
     </foreign-key>
     <foreign-key id="292" parent="274" name="day_meal_meals_id_fkey">
-      <ColNames>meals_id</ColNames>
+      <ColNames>meal_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25633</ObjectId>
       <RefColNames>id</RefColNames>
@@ -4513,66 +4513,66 @@ false Zulu
       <DefaultExpression>nextval(&apos;meal_product_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>1033</StateNumber>
-      <SequenceId>25577</SequenceId>
+      <StateNumber>1069</StateNumber>
+      <SequenceId>25656</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <column id="302" parent="276" name="products_id">
-      <DasType>integer|0s</DasType>
+    <column id="302" parent="276" name="meal_id">
+      <DasType>bigint|0s</DasType>
       <Position>2</Position>
-      <StateNumber>1033</StateNumber>
-      <TypeId>23</TypeId>
+      <StateNumber>1069</StateNumber>
+      <TypeId>20</TypeId>
     </column>
-    <column id="303" parent="276" name="meals_id">
-      <DasType>integer|0s</DasType>
+    <column id="303" parent="276" name="product_id">
+      <DasType>bigint|0s</DasType>
       <Position>3</Position>
-      <StateNumber>1033</StateNumber>
-      <TypeId>23</TypeId>
+      <StateNumber>1069</StateNumber>
+      <TypeId>20</TypeId>
     </column>
     <column id="304" parent="276" name="mass_of_ingredient">
       <DasType>numeric(5,2 digit)|0s</DasType>
       <DefaultExpression>0.00</DefaultExpression>
       <Position>4</Position>
-      <StateNumber>1033</StateNumber>
+      <StateNumber>1069</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <foreign-key id="305" parent="276" name="meal_product_products_id_fkey">
-      <ColNames>products_id</ColNames>
+    <foreign-key id="305" parent="276" name="meal_product_meal_id_fkey">
+      <ColNames>meal_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>25585</ObjectId>
+      <ObjectId>25664</ObjectId>
       <RefColNames>id</RefColNames>
       <RefColPositions>1</RefColPositions>
-      <StateNumber>1033</StateNumber>
-      <RefTableId>25558</RefTableId>
-      <RefTableName>product</RefTableName>
-      <RefTableKind>table</RefTableKind>
-    </foreign-key>
-    <foreign-key id="306" parent="276" name="meal_product_meals_id_fkey">
-      <ColNames>meals_id</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>25590</ObjectId>
-      <RefColNames>id</RefColNames>
-      <RefColPositions>1</RefColPositions>
-      <StateNumber>1033</StateNumber>
+      <StateNumber>1069</StateNumber>
       <RefTableId>25569</RefTableId>
       <RefTableName>meal</RefTableName>
+      <RefTableKind>table</RefTableKind>
+    </foreign-key>
+    <foreign-key id="306" parent="276" name="meal_product_product_id_fkey">
+      <ColNames>product_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>25669</ObjectId>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <StateNumber>1069</StateNumber>
+      <RefTableId>25558</RefTableId>
+      <RefTableName>product</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
     <index id="307" parent="276" name="meal_product_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>25583</ObjectId>
+      <ObjectId>25662</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1033</StateNumber>
+      <StateNumber>1069</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="308" parent="276" name="meal_product_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>25584</ObjectId>
+      <ObjectId>25663</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1033</StateNumber>
-      <UnderlyingIndexId>25583</UnderlyingIndexId>
+      <StateNumber>1069</StateNumber>
+      <UnderlyingIndexId>25662</UnderlyingIndexId>
     </key>
     <column id="309" parent="277" name="id">
       <DasType>bigint|0s</DasType>

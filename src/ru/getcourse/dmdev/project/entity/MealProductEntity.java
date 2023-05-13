@@ -2,15 +2,15 @@ package ru.getcourse.dmdev.project.entity;
 
 public class MealProductEntity {
     private Long id;
-    private Long productId;
     private Long mealId;
-    private Integer weight;
+    private Long productId;
+    private Integer massOfIngredient;
 
-    public MealProductEntity(Long id, Long productId, Long mealId, Integer weight) {
+    public MealProductEntity(Long id, Long mealId, Long productId, Integer massOfIngredient) {
         this.id = id;
-        this.productId = productId;
         this.mealId = mealId;
-        this.weight = weight;
+        this.productId = productId;
+        this.massOfIngredient = massOfIngredient;
     }
 
     public MealProductEntity() {
@@ -24,14 +24,6 @@ public class MealProductEntity {
         this.id = id;
     }
 
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public Long getMealId() {
         return mealId;
     }
@@ -40,11 +32,19 @@ public class MealProductEntity {
         this.mealId = mealId;
     }
 
-    public Integer getWeight() {
-        return weight;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setWeight(Integer weight) {
-        this.weight = weight;
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public Integer getMassOfIngredient() {
+        return massOfIngredient;
+    }
+
+    public void setMassOfIngredient(Integer massOfIngredient) {
+        this.massOfIngredient = massOfIngredient;
     }
 }

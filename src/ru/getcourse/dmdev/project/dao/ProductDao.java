@@ -1,6 +1,6 @@
 package ru.getcourse.dmdev.project.dao;
 
-import ru.getcourse.dmdev.project.dto.ProductFilter;
+import ru.getcourse.dmdev.project.dto.Filter;
 import ru.getcourse.dmdev.project.entity.ProductEntity;
 import ru.getcourse.dmdev.project.exception.DaoException;
 import ru.getcourse.dmdev.project.util.ConnectionManager;
@@ -10,7 +10,6 @@ import java.sql.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
@@ -113,7 +112,7 @@ public class ProductDao {
         }
     }
 
-    public List<ProductEntity> findAll(ProductFilter filter) {
+    public List<ProductEntity> findAll(Filter filter) {
         List<Object> params = new ArrayList<>();
         List<String > whereSql = new ArrayList<>();
         if (filter.title() != null){

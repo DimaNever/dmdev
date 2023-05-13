@@ -1,7 +1,7 @@
 package ru.getcourse.dmdev.project;
 
 import ru.getcourse.dmdev.project.dao.ProductDao;
-import ru.getcourse.dmdev.project.dto.ProductFilter;
+import ru.getcourse.dmdev.project.dto.Filter;
 import ru.getcourse.dmdev.project.entity.ProductEntity;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class ProductDaoRunner {
 //                new ProductEntity("Lentils", 0.0, 1.5, 53.0, 319.0),
 //                new ProductEntity("Eggs", 12.7, 11.5, 0.0, 157.0));
 
-        var productFilter = new ProductFilter(10, 0, "e");
+        var productFilter = new Filter(10, 0, "e");
         var productEntities = ProductDao.getInstance().findAll(productFilter);
 
         for (ProductEntity productEntity : productEntities) {
