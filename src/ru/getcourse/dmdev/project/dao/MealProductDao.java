@@ -108,12 +108,12 @@ public class MealProductDao {
     public List<MealProductEntity> findAll(Filter filter) {
         List<Object> params = new ArrayList<>();
         List<String > whereSql = new ArrayList<>();
-        if (filter.title() != null){
+        if (filter.getTitle() != null){
             whereSql.add("title LIKE ?");
-            params.add("%" + filter.title() + "%");
+            params.add("%" + filter.getTitle() + "%");
         }
-        params.add(filter.limit());
-        params.add(filter.offset());
+        params.add(filter.getLimit());
+        params.add(filter.getOffset());
         var where = " LIMIT ? OFFSET ? ";
         if (whereSql.size() != 0) {
             where = whereSql.stream()
