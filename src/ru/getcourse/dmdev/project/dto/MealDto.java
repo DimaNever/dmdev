@@ -6,8 +6,7 @@ import java.util.List;
 public class MealDto {
     private Long id;
     private String titleMeal;
-    private  List<ProductDto> productDtos = new ArrayList<>(); //final не получится же? Ведь надо будет сеттать.
-
+    private  List<ProductDto> productDtos = new ArrayList<>();
 
     public MealDto(String titleMeal) {
         this.titleMeal = titleMeal;

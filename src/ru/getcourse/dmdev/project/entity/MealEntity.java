@@ -1,11 +1,8 @@
 package ru.getcourse.dmdev.project.entity;
 
-import java.util.List;
-
 public class MealEntity {
     private Long id;
     private String titleMeal;
-
 
     public MealEntity(Long id, String titleMeal) {
         this.id = id;

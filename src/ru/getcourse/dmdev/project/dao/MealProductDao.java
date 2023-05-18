@@ -2,7 +2,6 @@ package ru.getcourse.dmdev.project.dao;
 
 import ru.getcourse.dmdev.project.dto.Filter;
 import ru.getcourse.dmdev.project.entity.MealProductEntity;
-import ru.getcourse.dmdev.project.entity.ProductEntity;
 import ru.getcourse.dmdev.project.exception.DaoException;
 import ru.getcourse.dmdev.project.util.ConnectionManager;
 

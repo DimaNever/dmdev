@@ -49,7 +49,6 @@ public class MealDao {
             FROM meal
             """;
 
-
     //language=PostgreSQL
     public static final String FIND_BY_ID_SQL = FIND_ALL_SQL + """
             WHERE id = ?
@@ -110,7 +109,6 @@ public class MealDao {
                     .collect(joining(" AND ", " WHERE ", " LIMIT ? OFFSET ? "));
         }
         //language=PostgreSQL
-
         var sql = FIND_ALL_SQL + where;
 
         try (var connection = ConnectionManager.get();

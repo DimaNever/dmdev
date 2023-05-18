@@ -5,9 +5,8 @@ import ru.getcourse.dmdev.project.entity.ProductEntity;
 import ru.getcourse.dmdev.project.exception.DaoException;
 import ru.getcourse.dmdev.project.util.ConnectionManager;
 
-
-import java.sql.*;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -121,7 +120,7 @@ public class ProductDao {
         }
         params.add(filter.limit());
         params.add(filter.offset());
-        var where = " LIMIT ? OFFSET ? ";
+        String where = " LIMIT ? OFFSET ? ";
         if (whereSql.size() != 0) {
             where = whereSql.stream()
                     .collect(joining(" AND ", " WHERE ", " LIMIT ? OFFSET ? "));
