@@ -20,12 +20,6 @@ public class MealDto {
         this.titleMeal = titleMeal;
     }
 
-//    public MealDto(Long id, String titleMeal, List<ProductDto> productDtos) {
-//        this.id = id;
-//        this.titleMeal = titleMeal;
-//        this.productDtos = productDtos;
-//    }
-
     public static MealDto fromEntity(Optional<MealEntity> mealEntity) {
         return new MealDto(mealEntity.get().getId(),
                 mealEntity.get().getTitleMeal()

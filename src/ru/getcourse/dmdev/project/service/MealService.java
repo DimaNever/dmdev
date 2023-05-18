@@ -28,7 +28,7 @@ public class MealService {
         var mealEntity = mealDao.findByMealId(mealId);
 
         List<ProductDto> productDtos = new ArrayList<>();
-        List<MealProductEntity> mealProductEntityList = mealProductDao.findAll();
+        List<MealProductEntity> mealProductEntityList = mealProductDao.findById(mealEntity.get().getId());
         for (MealProductEntity mealProductEntity : mealProductEntityList) {
             var productEntity = productDao.findById(mealProductEntity.getProductId());
             var productDto = ProductDto.fromEntity(productEntity);
