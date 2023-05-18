@@ -19,9 +19,8 @@ public class ConnectionManager {
     private static List<Connection> sourceConnections;
 
     static {
-        initConnectionPool();
         loadDriver();
-
+        initConnectionPool();
     }
 
     private ConnectionManager() {
