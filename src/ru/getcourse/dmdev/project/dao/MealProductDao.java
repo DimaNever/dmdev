@@ -79,7 +79,7 @@ public class MealProductDao {
             preparedStatement.setLong(2, mealProductEntity.getProductId());
             preparedStatement.setInt(3, mealProductEntity.getMassOfIngredient());
 
-            preparedStatement.executeUpdate();
+            var savedRows = preparedStatement.executeUpdate();
 
             var generatedKeys = preparedStatement.getGeneratedKeys();
             if (generatedKeys.next()) {

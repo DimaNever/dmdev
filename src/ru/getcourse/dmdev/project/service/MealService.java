@@ -1,8 +1,13 @@
 package ru.getcourse.dmdev.project.service;
 
 import ru.getcourse.dmdev.project.dao.MealDao;
+import ru.getcourse.dmdev.project.dao.MealProductDao;
+import ru.getcourse.dmdev.project.dao.ProductDao;
 import ru.getcourse.dmdev.project.dto.MealDto;
+import ru.getcourse.dmdev.project.dto.ProductDto;
+import ru.getcourse.dmdev.project.entity.MealProductEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MealService {
@@ -11,16 +16,29 @@ public class MealService {
 
     private final MealDao mealDao = MealDao.getInstance();
 
+    private final MealProductDao mealProductDao = MealProductDao.getInstance();
+    private final ProductDao productDao = ProductDao.getInstance();
+
+
     private MealService() {
     }
 
-//    public List<MealDto> findAll() {
-//        return mealDao.findAll().stream()
-//                .map(mealEntity -> new MealDto(
-//                        mealEntity.getId(),
-//
-//                ))
-//    }
+    public MealDto findMealById(Long mealId) {
+
+        var mealEntity = mealDao.findByMealId(mealId);
+
+        List<ProductDto> productDtos = new ArrayList<>();
+        List<MealProductEntity> mealProductEntityList = mealProductDao.findAll();
+        for (MealProductEntity mealProductEntity : mealProductEntityList) {
+            var productEntity = productDao.findById(mealProductEntity.getProductId());
+            var productDto = ProductDto.fromEntity(productEntity);
+            productDtos.add(productDto);
+        }
+
+        var mealDto = MealDto.fromEntity(mealEntity);
+        mealDto.setProductDtos(productDtos);
+        return mealDto;
+    }
 
     public static MealService getInstance() {
         return INSTANCE;

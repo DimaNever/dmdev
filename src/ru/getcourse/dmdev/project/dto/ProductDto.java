@@ -2,6 +2,8 @@ package ru.getcourse.dmdev.project.dto;
 
 import ru.getcourse.dmdev.project.entity.ProductEntity;
 
+import java.util.Optional;
+
 public class ProductDto {
     private Long id;
     private String title;
@@ -23,13 +25,13 @@ public class ProductDto {
         return new ProductEntity(id, title, proteinIn100Grams, fatsIn100Grams, carbsIn100Grams, caloriesIn100Grams);
     }
 
-    public static ProductDto fromEntity(ProductEntity productEntity) {
-        return new ProductDto(productEntity.getId(),
-                productEntity.getTitle(),
-                productEntity.getProteinIn100Grams(),
-                productEntity.getFatsIn100Grams(),
-                productEntity.getCarbsIn100Grams(),
-                productEntity.getCaloriesIn100Grams()
+    public static ProductDto fromEntity(Optional<ProductEntity> productEntity) {
+        return new ProductDto(productEntity.get().getId(),
+                productEntity.get().getTitle(),
+                productEntity.get().getProteinIn100Grams(),
+                productEntity.get().getFatsIn100Grams(),
+                productEntity.get().getCarbsIn100Grams(),
+                productEntity.get().getCaloriesIn100Grams()
         );
     }
 
@@ -79,5 +81,13 @@ public class ProductDto {
 
     public void setCaloriesIn100Grams(Double caloriesIn100Grams) {
         this.caloriesIn100Grams = caloriesIn100Grams;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductDto{" +
+               "id=" + id +
+               ", title='" + title + '\'' +
+               '}';
     }
 }

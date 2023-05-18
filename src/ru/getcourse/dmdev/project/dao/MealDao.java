@@ -141,10 +141,10 @@ public class MealDao {
         }
     }
 
-    public Optional<MealEntity> findById(Long id) {
+    public Optional<MealEntity> findByMealId(Long mealId) {
         try (var connection = ConnectionManager.get();
              var preparedStatement = connection.prepareStatement(FIND_BY_ID_SQL);) {
-            preparedStatement.setLong(1, id);
+            preparedStatement.setLong(1, mealId);
 
             var resultSet = preparedStatement.executeQuery();
             MealEntity mealEntity = null;
