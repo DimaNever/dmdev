@@ -20,7 +20,7 @@ public class AllProductServlet extends HttpServlet {
         resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
 
         try (var printWriter = resp.getWriter()) {
-            printWriter.write("<h1>Список продуктов:</h1>");
+            printWriter.write("<h1>Список всех продуктов:</h1>");
             printWriter.write("<ul>");
             productService.findAll().forEach(productDto -> {
                 printWriter.write("""

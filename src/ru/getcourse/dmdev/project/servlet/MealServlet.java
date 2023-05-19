@@ -23,7 +23,7 @@ public class MealServlet extends HttpServlet {
 
         try (var printWriter = resp.getWriter()) {
             printWriter.write("<h1>Список всех блюд:</h1>");
-            printWriter.write("<ul>");
+            printWriter.write("<ol>");
             mealService.findAllMeals().forEach(mealDto -> {
                 printWriter.write("""
                         <li>
@@ -31,7 +31,7 @@ public class MealServlet extends HttpServlet {
                         </li>
                         """.formatted(mealDto.getId(),mealDto.getTitleMeal()));
             });
-            printWriter.write("</ul>");
+            printWriter.write("</ol>");
         }
     }
 }
