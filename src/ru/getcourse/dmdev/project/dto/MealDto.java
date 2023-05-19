@@ -1,7 +1,10 @@
 package ru.getcourse.dmdev.project.dto;
 
+import ru.getcourse.dmdev.project.entity.MealEntity;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MealDto {
     private Long id;
@@ -17,10 +20,10 @@ public class MealDto {
         this.titleMeal = titleMeal;
     }
 
-    public MealDto(Long id, String titleMeal, List<ProductDto> productDtos) {
-        this.id = id;
-        this.titleMeal = titleMeal;
-        this.productDtos = productDtos;
+    public static MealDto fromEntity(Optional<MealEntity> mealEntity) {
+        return new MealDto(mealEntity.get().getId(),
+                mealEntity.get().getTitleMeal()
+        );
     }
 
     public MealDto() {
@@ -48,5 +51,14 @@ public class MealDto {
 
     public void setProductDtos(List<ProductDto> productDtos) {
         this.productDtos = productDtos;
+    }
+
+    @Override
+    public String toString() {
+        return "MealDto{" +
+               "id=" + id +
+               ", titleMeal='" + titleMeal + '\'' +
+               ", productDtos=" + productDtos +
+               '}';
     }
 }

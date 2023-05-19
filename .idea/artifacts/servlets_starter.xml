@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="servlets-starter">
+    <output-path>$PROJECT_DIR$/out/artifacts/servlets_starter</output-path>
+    <root id="archive" name="servlets-starter.war">
+      <element id="artifact" artifact-name="dmdev:Web exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="file-copy" path="G:/Java/MyJava/postgresql-42.6.0.jar" />
+          <element id="library" level="project" name="lib" />
+          <element id="library" level="project" name="lib (2)" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

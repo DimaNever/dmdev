@@ -56,7 +56,7 @@ public class MealProductDao {
 
     //language=PostgreSQL
     public static final String FIND_BY_ID_SQL = FIND_ALL_SQL + """
-            WHERE id = ?
+            WHERE meal_id = ?
             """;
 
     private MealProductDao() {
@@ -79,7 +79,7 @@ public class MealProductDao {
             preparedStatement.setLong(2, mealProductEntity.getProductId());
             preparedStatement.setInt(3, mealProductEntity.getMassOfIngredient());
 
-            preparedStatement.executeUpdate();
+            var savedRows = preparedStatement.executeUpdate();
 
             var generatedKeys = preparedStatement.getGeneratedKeys();
             if (generatedKeys.next()) {
@@ -153,18 +153,16 @@ public class MealProductDao {
         }
     }
 
-    public Optional<MealProductEntity> findById(Long id) {
+    public List<MealProductEntity> findById(Long id) {
         try (var connection = ConnectionManager.get();
              var preparedStatement = connection.prepareStatement(FIND_BY_ID_SQL);) {
             preparedStatement.setLong(1, id);
-
             var resultSet = preparedStatement.executeQuery();
-            MealProductEntity mealProductEntity = null;
-            if (resultSet.next()) {
-                mealProductEntity = buildMealProduct(resultSet);
+            List<MealProductEntity> mealProductEntities = new ArrayList<>();
+            while (resultSet.next()) {
+                mealProductEntities.add(buildMealProduct(resultSet));
             }
-
-            return Optional.ofNullable(mealProductEntity);
+            return mealProductEntities;
         } catch (SQLException e) {
             throw new DaoException(e);
         }

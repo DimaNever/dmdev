@@ -13,6 +13,12 @@ public class MealProductEntity {
         this.massOfIngredient = massOfIngredient;
     }
 
+    public MealProductEntity(Long mealId, Long productId, Integer massOfIngredient) {
+        this.mealId = mealId;
+        this.productId = productId;
+        this.massOfIngredient = massOfIngredient;
+    }
+
     public MealProductEntity() {
     }
 
@@ -46,5 +52,15 @@ public class MealProductEntity {
 
     public void setMassOfIngredient(Integer massOfIngredient) {
         this.massOfIngredient = massOfIngredient;
+    }
+
+    @Override
+    public String toString() {
+        return "MealProductEntity{" +
+               "id=" + id +
+               ", mealId=" + mealId +
+               ", productId=" + productId +
+               ", massOfIngredient=" + massOfIngredient +
+               '}';
     }
 }
