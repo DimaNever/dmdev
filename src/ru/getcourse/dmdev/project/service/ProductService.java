@@ -24,10 +24,9 @@ public class ProductService {
                 .collect(toList());
     }
 
-    public List<ProductDto> findAllByProductId(Long productId) {
-        return productDao.findById(productId).stream()
-                .map((ProductEntity productEntity) -> ProductDto.fromEntity(Optional.ofNullable(productEntity)))
-                .collect(toList());
+    public ProductDto findByProductId(Long productId) {
+        return ProductDto.fromEntity(productDao.findById(productId));
+
     }
 
     public static ProductService getInstance() {
